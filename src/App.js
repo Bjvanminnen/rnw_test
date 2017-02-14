@@ -8,7 +8,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    alignContent: 'flex-start',
+    // doesnt work in RN
+    // alignContent: 'flex-start',
     width: 320,
     height: 480,
     backgroundColor: '#eeeeee'
