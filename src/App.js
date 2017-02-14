@@ -4,6 +4,9 @@ import BrailleCard from './BrailleCard';
 
 // Styles
 const styles = StyleSheet.create({
+  outer: {
+    flex: 1
+  },
   main: {
     flex: 1,
     flexDirection: 'row',
@@ -19,7 +22,7 @@ const styles = StyleSheet.create({
 // Components
 const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const App = () => (
-  <View>
+  <View style={styles.outer}>
     <View style={styles.main}>
       {characters.split('').map((c, index) => (
         <BrailleCard
