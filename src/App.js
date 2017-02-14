@@ -1,23 +1,32 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
+import BrailleCard from './BrailleCard';
 
 // Styles
 const styles = StyleSheet.create({
-  view: {
+  main: {
     flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignContent: 'flex-start',
     width: 320,
     height: 480,
-    borderWidth: 1,
-    borderColor: 'black'
+    backgroundColor: '#eeeeee'
   }
 });
 
 // Components
+const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const App = () => (
-  <View style={styles.view}>
-    <Text>
-      test
-    </Text>
+  <View>
+    <View style={styles.main}>
+      {characters.split('').map((c, index) => (
+        <BrailleCard
+          key={index}
+          character={c}
+        />
+      ))}
+    </View>
   </View>
 )
 
