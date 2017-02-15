@@ -7,12 +7,20 @@ const styles = {
     height: 40,
     backgroundColor: 'white',
     margin: 5
+  },
+  focus: {
+    borderWidth: 1,
+    borderColor: 'black'
   }
 };
 
-const CryptoCard = ({onPress, children, style}) => (
+const CryptoCard = ({hasFocus, onPress, children, style}) => (
   <TouchableHighlight
-    style={styles.main}
+    style={{
+      ...styles.main,
+      ...(hasFocus && styles.focus),
+      ...style
+    }}
     onPress={onPress}
   >
     {children}

@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import CryptoCard from './CryptoCard';
 import { addCharacter } from './redux/plaintext';
+import { clearHighlight } from './redux/highlightedCard';
 
 const CIRCLE_SIZE = 7;
 
@@ -85,15 +86,19 @@ class BrailleCard extends Component {
   }
 
   onPress() {
-    const { character, addCharacter } = this.props;
+    const { character, addCharacter, clearHighlight } = this.props;
     addCharacter(character);
+    clearHighlight();
   }
 
   render() {
-    const { character } = this.props;
+    const { highlightedCard, character } = this.props;
     const dots = (Alphabet[character] || '000000').split('').map(x => x === '1');
     return (
-      <CryptoCard onPress={this.onPress}>
+      <CryptoCard
+        hasFocus={highlightedCard === character}
+        onPress={this.onPress}
+      >
         <View style={styles.card}>
           <View style={styles.textColumn}>
             <Text style={styles.text}>{character}</Text>
@@ -114,4 +119,9 @@ class BrailleCard extends Component {
   }
 }
 
-export default connect(null, {addCharacter})(BrailleCard);
+export default connect(state => ({
+  highlightedCard: state.highlightedCard
+}), {
+  addCharacter,
+  clearHighlight
+})(BrailleCard);
