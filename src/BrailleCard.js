@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import CryptoCard from './CryptoCard';
 
 const CIRCLE_SIZE = 7;
@@ -12,6 +12,36 @@ const Alphabet = {
   E: '100100',
   F: '111000',
   G: '111100',
+  H: '101100',
+  I: '011000',
+  J: '011100',
+  K: '100010',
+  L: '101010',
+  M: '110010',
+  N: '110110',
+  O: '100110',
+  P: '111010',
+  Q: '111110',
+  R: '101110',
+  S: '011010',
+  T: '011110',
+  U: '100011',
+  V: '101011',
+  W: '011110',
+  X: '110011',
+  Y: '110111',
+  Z: '100111',
+  '#': '010111',
+  '1': '100000',
+  '2': '101000',
+  '3': '110000',
+  '4': '110100',
+  '5': '100100',
+  '6': '111000',
+  '7': '111100',
+  '8': '101100',
+  '9': '011000',
+  '0': '011100',
 };
 
 const BrailleDot = ({filled}) => (
@@ -37,6 +67,9 @@ const styles = {
   column: {
     flexDirection: 'column',
     justifyContent: 'center'
+  },
+  textColumn: {
+    flexDirection: 'column'
   }
 };
 
@@ -47,6 +80,9 @@ export default class BrailleCard extends Component {
     return (
       <CryptoCard>
         <View style={styles.card}>
+          <View style={styles.textColumn}>
+            <Text>{character}</Text>
+          </View>
           <View style={styles.column}>
             <BrailleDot filled={dots[0]}/>
             <BrailleDot filled={dots[2]}/>

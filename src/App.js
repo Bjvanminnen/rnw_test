@@ -4,33 +4,45 @@ import BrailleCard from './BrailleCard';
 
 // Styles
 const styles = StyleSheet.create({
-  outer: {
-    flex: 1
-  },
   main: {
     flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    // flexDirection: 'column',
+    // flexWrap: 'wrap',
     // doesnt work in RN
     // alignContent: 'flex-start',
     width: 320,
     height: 480,
     backgroundColor: '#eeeeee'
+  },
+  group: {
+    // flexDirection: 'row'
   }
 });
 
 // Components
-const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ#1234567890";
+let ungrouped = characters.split('');
+const grouped = [];
+while (ungrouped.length) {
+  grouped.push(ungrouped.splice(0, 6));
+}
+
 const App = () => (
-  <View style={styles.outer}>
-    <View style={styles.main}>
-      {characters.split('').map((c, index) => (
-        <BrailleCard
-          key={index}
-          character={c}
-        />
-      ))}
-    </View>
+  <View style={styles.main}>
+    {
+      grouped.map((group, groupKey) => (
+        <View style={{flexDirection: 'row'}} key={groupKey} >
+          {
+            group.map((char, charKey) => (
+              <BrailleCard
+                key={charKey}
+                character={char}
+              />
+            ))
+          }
+        </View>
+      ))
+    }
   </View>
 )
 
