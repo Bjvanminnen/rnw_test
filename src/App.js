@@ -1,6 +1,9 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import { Provider } from 'react-redux';
+import getStore from './redux';
 import BrailleCard from './BrailleCard';
+import Plaintext from './Plaintext';
 
 // Styles
 const styles = StyleSheet.create({
@@ -28,22 +31,25 @@ while (ungrouped.length) {
 }
 
 const App = () => (
-  <View style={styles.main}>
-    {
-      grouped.map((group, groupKey) => (
-        <View style={{flexDirection: 'row'}} key={groupKey} >
-          {
-            group.map((char, charKey) => (
-              <BrailleCard
-                key={charKey}
-                character={char}
-              />
-            ))
-          }
-        </View>
-      ))
-    }
-  </View>
+  <Provider store={getStore()}>
+    <View style={styles.main}>
+      {
+        grouped.map((group, groupKey) => (
+          <View style={{flexDirection: 'row'}} key={groupKey} >
+            {
+              group.map((char, charKey) => (
+                <BrailleCard
+                  key={charKey}
+                  character={char}
+                />
+              ))
+            }
+          </View>
+        ))
+      }
+      <Plaintext/>
+    </View>
+  </Provider>
 )
 
 export default App;
