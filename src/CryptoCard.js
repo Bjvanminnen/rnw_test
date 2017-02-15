@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { TouchableHighlight } from 'react-native';
 
 const styles = {
   main: {
@@ -10,9 +10,12 @@ const styles = {
   }
 };
 
-const CryptoCard = ({children, style}) => (
-  <View style={styles.main}>
+const CryptoCard = ({onPress, children, style}) => (
+  <TouchableHighlight
+    style={styles.main}
+    onPress={onPress}
+  >
     {children}
-  </View>
+  </TouchableHighlight>
 );
 export default CryptoCard;

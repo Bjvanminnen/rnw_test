@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
 import CryptoCard from './CryptoCard';
+import { addCharacter } from './redux/plaintext';
 
 const CIRCLE_SIZE = 7;
 
@@ -27,7 +29,7 @@ const Alphabet = {
   T: '011110',
   U: '100011',
   V: '101011',
-  W: '011110',
+  W: '011101',
   X: '110011',
   Y: '110111',
   Z: '100111',
@@ -70,18 +72,31 @@ const styles = {
   },
   textColumn: {
     flexDirection: 'column'
+  },
+  text: {
+    color: 'lightgray'
   }
 };
 
-export default class BrailleCard extends Component {
+class BrailleCard extends Component {
+  constructor(props) {
+    super(props);
+    this.onPress = this.onPress.bind(this);
+  }
+
+  onPress() {
+    const { character, addCharacter } = this.props;
+    addCharacter(character);
+  }
+
   render() {
     const { character } = this.props;
     const dots = (Alphabet[character] || '000000').split('').map(x => x === '1');
     return (
-      <CryptoCard>
+      <CryptoCard onPress={this.onPress}>
         <View style={styles.card}>
           <View style={styles.textColumn}>
-            <Text>{character}</Text>
+            <Text style={styles.text}>{character}</Text>
           </View>
           <View style={styles.column}>
             <BrailleDot filled={dots[0]}/>
@@ -98,3 +113,5 @@ export default class BrailleCard extends Component {
     );
   }
 }
+
+export default connect(null, {addCharacter})(BrailleCard);
