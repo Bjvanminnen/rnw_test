@@ -1,33 +1,29 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Dimensions, Platform } from 'react-native'
 import { Provider } from 'react-redux';
 import getStore from './redux';
 import BrailleCard from './BrailleCard';
 import Plaintext from './Plaintext';
 
 // Styles
+const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   main: {
-    flex: 1,
-    // flexDirection: 'column',
-    // flexWrap: 'wrap',
-    // doesnt work in RN
-    // alignContent: 'flex-start',
-    width: 320,
-    height: 480,
+    marginTop: 20,
+    width: Platform.os === 'web' ? 375 : width,
+    height: Platform.os === 'web' ? 667 : height,
     backgroundColor: '#eeeeee'
-  },
-  group: {
-    // flexDirection: 'row'
   }
 });
 
 // Components
 const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ#1234567890";
+// TODO - could be dependent on dimensions (or just figure out flex)
+const CARDS_PER_ROW = 7;
 let ungrouped = characters.split('');
 const grouped = [];
 while (ungrouped.length) {
-  grouped.push(ungrouped.splice(0, 6));
+  grouped.push(ungrouped.splice(0, CARDS_PER_ROW));
 }
 
 const App = () => (

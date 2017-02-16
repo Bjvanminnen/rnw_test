@@ -16,11 +16,11 @@ const styles = {
 
 const CryptoCard = ({hasFocus, onPress, children, style}) => (
   <TouchableHighlight
-    style={{
-      ...styles.main,
-      ...(hasFocus && styles.focus),
-      ...style
-    }}
+    style={[
+      styles.main,
+      (hasFocus && styles.focus),
+      style
+    ]}
     onPress={onPress}
   >
     {children}
