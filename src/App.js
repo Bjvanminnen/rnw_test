@@ -10,8 +10,8 @@ const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   main: {
     marginTop: 20,
-    width: Platform.os === 'web' ? 375 : width,
-    height: Platform.os === 'web' ? 667 : height,
+    width: Platform.OS === 'web' ? 375 : width,
+    height: Platform.OS === 'web' ? 667 : height,
     backgroundColor: '#eeeeee'
   }
 });
