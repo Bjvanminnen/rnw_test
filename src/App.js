@@ -6,6 +6,10 @@ import BrailleCard from './BrailleCard';
 import Plaintext from './Plaintext';
 import CipherSelector from './CipherSelector';
 
+// TODO - own repo with better name
+// TODO - braille not hard coded. do another cipher
+// TODO - allow adding spaces/line breaks
+
 // Styles
 const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
