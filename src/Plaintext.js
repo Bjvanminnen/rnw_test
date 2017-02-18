@@ -15,7 +15,7 @@ const styles = {
     backgroundColor: 'white',
   },
   text: {
-    fontFamily: '"Courier New", monospace',
+    fontFamily: 'Courier New',
     fontSize: 20
   },
   selected: {
