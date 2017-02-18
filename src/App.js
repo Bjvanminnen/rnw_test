@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import getStore from './redux';
 import BrailleCard from './BrailleCard';
 import Plaintext from './Plaintext';
+import CipherSelector from './CipherSelector';
 
 // Styles
 const { width, height } = Dimensions.get('window');
@@ -29,6 +30,7 @@ while (ungrouped.length) {
 const App = () => (
   <Provider store={getStore()}>
     <View style={styles.main}>
+      <CipherSelector/>
       {
         grouped.map((group, groupKey) => (
           <View style={{flexDirection: 'row'}} key={groupKey} >

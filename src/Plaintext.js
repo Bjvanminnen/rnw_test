@@ -25,6 +25,7 @@ const styles = {
   }
 };
 
+// TODO : should be scrollable
 const Plaintext = ({selectedIndex, characters, selectCharacter}) => (
   <View style={styles.plaintext}>
     {
