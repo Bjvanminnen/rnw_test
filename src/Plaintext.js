@@ -9,38 +9,46 @@ const styles = {
     flexDirection: 'row',
     flexWrap: 'wrap'
   },
-  text: {
-    margin: 1,
+  touchable: {
+    margin: 2,
     padding: 2,
     backgroundColor: 'white',
-    fontFamily: '"Courier New", monospace'
+  },
+  text: {
+    fontFamily: '"Courier New", monospace',
+    fontSize: 20
+  },
+  selected: {
+    borderWidth: 1,
+    borderStyle: 'dashed',
+    borderColor: 'black'
   }
 };
 
-const Character = connect(null, { selectCharacter })(
-  ({char, index, selectCharacter}) => (
-    <TouchableHighlight
-      onPress={() => selectCharacter(index, char)}
-    >
-      <Text style={styles.text}>{char}</Text>
-    </TouchableHighlight>
-  )
-);
-
-const Plaintext = ({characters}) => (
+const Plaintext = ({selectedIndex, characters, selectCharacter}) => (
   <View style={styles.plaintext}>
     {
       characters.map((char, index) => (
-        <Character
+        <TouchableHighlight
           key={index}
-          char={char}
-          index={index}
-        />
+          style={[
+            styles.touchable,
+            index === selectedIndex && styles.selected
+          ]}
+          onPress={() => selectCharacter(index, char)}
+        >
+          <Text
+            style={styles.text}
+          >
+            {char}
+          </Text>
+        </TouchableHighlight>
       ))
     }
   </View>
 );
 
 export default connect(state => ({
+  selectedIndex: state.plaintext.selectedIndex,
   characters: state.plaintext.letters
-}))(Plaintext);
+}), { selectCharacter })(Plaintext);

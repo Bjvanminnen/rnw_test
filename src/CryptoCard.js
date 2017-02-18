@@ -10,6 +10,7 @@ const styles = {
   },
   focus: {
     borderWidth: 1,
+    borderStyle: 'dashed',
     borderColor: 'black'
   }
 };
