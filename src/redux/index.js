@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';
+import thunk from 'redux-thunk';
 
 import plaintext from './plaintext';
 import highlightedCard from './highlightedCard';
@@ -16,7 +17,7 @@ export default function getStore() {
       highlightedCard
     });
 
-    store = createStore(reducers, applyMiddleware(logger));
+    store = createStore(reducers, applyMiddleware(thunk, logger));
   }
 
   return store;
