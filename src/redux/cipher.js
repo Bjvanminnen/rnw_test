@@ -27,7 +27,7 @@ export default function cipher(state = 0, action) {
     return (state + 1) % ciphers.length;
   }
 
-  if (action.type == DECREMENT_CIPHER) {
+  if (action.type === DECREMENT_CIPHER) {
     return (state - 1 + ciphers.length) % ciphers.length;
   }
   return state;

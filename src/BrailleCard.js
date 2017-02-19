@@ -62,7 +62,7 @@ const BrailleDot = ({filled}) => (
 );
 
 const styles = {
-  card: {
+  contents: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center'
@@ -93,13 +93,15 @@ class BrailleCard extends Component {
 
   render() {
     const { highlightedCard, character } = this.props;
-    const dots = (Alphabet[character] || '000000').split('').map(x => x === '1');
+    const dots = (Alphabet[character]).split('').map(x => x === '1');
     return (
       <CryptoCard
         hasFocus={highlightedCard === character}
+        width={40}
+        height={40}
         onPress={this.onPress}
       >
-        <View style={styles.card}>
+        <View style={styles.contents}>
           <View style={styles.textColumn}>
             <Text style={styles.text}>{character}</Text>
           </View>

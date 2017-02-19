@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { TouchableHighlight } from 'react-native';
 
 const styles = {
   main: {
-    width: 40,
-    height: 40,
     backgroundColor: 'white',
     margin: 5
   },
@@ -15,16 +13,25 @@ const styles = {
   }
 };
 
-const CryptoCard = ({hasFocus, onPress, children, style}) => (
+const CryptoCard = ({hasFocus, width, height, onPress, children, style}) => (
   <TouchableHighlight
     style={[
       styles.main,
       (hasFocus && styles.focus),
-      style
+      style,
+      { width, height }
     ]}
     onPress={onPress}
   >
     {children}
   </TouchableHighlight>
 );
+CryptoCard.propTypes = {
+  hasFocus: PropTypes.bool.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  onPress: PropTypes.func.isRequired,
+  style: PropTypes.object
+};
+
 export default CryptoCard;
