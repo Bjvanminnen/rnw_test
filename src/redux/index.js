@@ -2,7 +2,6 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';
 
 import plaintext from './plaintext';
-import highlightedCard from './highlightedCard';
 import cipher from './cipher';
 
 let store = null;
@@ -13,8 +12,7 @@ export default function getStore() {
     });
 
     const reducers = combineReducers({
-      plaintext,
-      highlightedCard,
+      plaintext,      
       cipher
     });
 

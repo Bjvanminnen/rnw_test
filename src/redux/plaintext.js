@@ -20,6 +20,7 @@ export default function plaintext(state = initialState, action) {
     let nextLetters = state.letters.set(index, action.character);
     if (index === state.letters.size - 1) {
       return {
+        ...state,
         letters: nextLetters.push(' '),
         selectedIndex: index + 1
       };
@@ -42,3 +43,5 @@ export default function plaintext(state = initialState, action) {
   }
   return state;
 }
+
+export const highlightedCharacter = state => state.letters.get(state.selectedIndex);
