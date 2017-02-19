@@ -1,6 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { TouchableHighlight } from 'react-native';
+import { addCharacter } from './redux/plaintext';
+import { clearHighlight } from './redux/highlightedCard';
 
 const styles = {
   main: {
@@ -25,8 +27,21 @@ class CryptoCard extends Component {
     highlightedCard: PropTypes.letter.isRequired,
   }
 
+  constructor(props) {
+    super(props)
+
+    this.onPress = this.onPress.bind(this);
+  }
+
+  // TODO - dont clear highlight if we're not on the last index
+  onPress() {
+    const { character, addCharacter, clearHighlight } = this.props;
+    addCharacter(character);
+    clearHighlight();
+  }
+
   render() {
-    const { character, highlightedCard, width, height, onPress, children } = this.props;
+    const { character, highlightedCard, width, height, children } = this.props;
     const hasFocus = character === highlightedCard;
     return (
       <TouchableHighlight
@@ -35,7 +50,7 @@ class CryptoCard extends Component {
           (hasFocus && styles.focus),
           { width, height }
         ]}
-        onPress={onPress}
+        onPress={this.onPress}
       >
         {children}
       </TouchableHighlight>
@@ -45,4 +60,4 @@ class CryptoCard extends Component {
 
 export default connect(state => ({
   highlightedCard: state.highlightedCard
-}))(CryptoCard);
+}), { addCharacter, clearHighlight })(CryptoCard);

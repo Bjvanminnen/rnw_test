@@ -1,9 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text } from 'react-native';
-import { connect } from 'react-redux';
 import CryptoCard from './CryptoCard';
-import { addCharacter } from './redux/plaintext';
-import { clearHighlight } from './redux/highlightedCard';
 
 const Alphabet = {
   A: '01',
@@ -67,44 +64,27 @@ const styles = {
   }
 };
 
-class MorseCard extends Component {
-  constructor(props) {
-    super(props);
-    this.onPress = this.onPress.bind(this);
-  }
+const textForChar = character => (
+  (Alphabet[character]).split('').map(x => x === '0' ? '.' : '-').join('')
+);
 
-  // TODO - should onPress be on CryptoCard? (probably yes)
-  // TODO - dont clear highlight if we're not on the last index
-  onPress() {
-    const { character, addCharacter, clearHighlight } = this.props;
-    addCharacter(character);
-    clearHighlight();
-  }
+const MorseCard = ({character}) => (
+  <CryptoCard
+    width={80}
+    height={30}
+    character={character}    
+  >
+    <View style={styles.contents}>
+      <View style={styles.textColumn}>
+        <Text style={styles.label}>{character}</Text>
+      </View>
+      <View>
+        <Text style={styles.text}>
+          {textForChar(character)}
+        </Text>
+      </View>
+    </View>
+  </CryptoCard>
+);
 
-  render() {
-    const { character } = this.props;
-    const text = (Alphabet[character]).split('').map(x => x === '0' ? '.' : '-').join('');
-    return (
-      <CryptoCard
-        width={80}
-        height={30}
-        character={character}
-        onPress={this.onPress}
-      >
-        <View style={styles.contents}>
-          <View style={styles.textColumn}>
-            <Text style={styles.label}>{character}</Text>
-          </View>
-          <View>
-            <Text style={styles.text}>{text}</Text>
-          </View>
-        </View>
-      </CryptoCard>
-    );
-  }
-}
-
-export default connect(null, {
-  addCharacter,
-  clearHighlight
-})(MorseCard);
+export default MorseCard;
