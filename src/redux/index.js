@@ -1,9 +1,9 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';
-import thunk from 'redux-thunk';
 
 import plaintext from './plaintext';
 import highlightedCard from './highlightedCard';
+import cipher from './cipher';
 
 let store = null;
 export default function getStore() {
@@ -14,10 +14,11 @@ export default function getStore() {
 
     const reducers = combineReducers({
       plaintext,
-      highlightedCard
+      highlightedCard,
+      cipher
     });
 
-    store = createStore(reducers, applyMiddleware(thunk, logger));
+    store = createStore(reducers, applyMiddleware(logger));
   }
 
   return store;

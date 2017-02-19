@@ -2,13 +2,13 @@ import React from 'react'
 import { StyleSheet, View, Dimensions, Platform } from 'react-native'
 import { Provider } from 'react-redux';
 import getStore from './redux';
-import BrailleCipher from './BrailleCipher';
+import Cipher from './Cipher';
 import Plaintext from './Plaintext';
 import CipherSelector from './CipherSelector';
 
 // TODO - own repo with better name
-// TODO - braille not hard coded. do another cipher
 // TODO - allow adding spaces/line breaks
+// TODO - ability to clear current text
 
 // Styles
 const { width, height } = Dimensions.get('window');
@@ -26,7 +26,7 @@ const App = () => (
   <Provider store={getStore()}>
     <View style={styles.main}>
       <CipherSelector/>
-      <BrailleCipher/>
+      <Cipher/>
       <Plaintext/>
     </View>
   </Provider>

@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
+import { cipherTypeFromIndex, incrementCipher, decrementCipher } from './redux/cipher';
 
 const styles = {
   main: {
@@ -16,14 +17,18 @@ const styles = {
 
 // TODO: Clicking left/right should change ciphers. Clicking name should give us
 // a dropdown.
-const CipherSelector = ({cipher}) => (
+const CipherSelector = ({cipher, incrementCipher, decrementCipher}) => (
   <View style={styles.main}>
-    <Text style={styles.button}>{"<"}</Text>
+    <TouchableHighlight onPress={decrementCipher}>
+      <Text style={styles.button}>{"<"}</Text>
+    </TouchableHighlight>
     <Text>{cipher}</Text>
-    <Text style={styles.button}>{">"}</Text>
+    <TouchableHighlight onPress={incrementCipher}>
+      <Text style={styles.button}>{">"}</Text>
+    </TouchableHighlight>
   </View>
 );
 
 export default connect(state => ({
-  cipher: 'Braille'
-}))(CipherSelector);
+  cipher: cipherTypeFromIndex(state.cipher)
+}), { incrementCipher, decrementCipher })(CipherSelector);
