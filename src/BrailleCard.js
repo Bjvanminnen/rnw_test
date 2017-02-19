@@ -92,11 +92,11 @@ class BrailleCard extends Component {
   }
 
   render() {
-    const { highlightedCard, character } = this.props;
+    const { character } = this.props;
     const dots = (Alphabet[character]).split('').map(x => x === '1');
     return (
       <CryptoCard
-        hasFocus={highlightedCard === character}
+        character={character}
         width={45}
         height={45}
         onPress={this.onPress}
@@ -121,9 +121,7 @@ class BrailleCard extends Component {
   }
 }
 
-export default connect(state => ({
-  highlightedCard: state.highlightedCard
-}), {
+export default connect(null, {
   addCharacter,
   clearHighlight
 })(BrailleCard);

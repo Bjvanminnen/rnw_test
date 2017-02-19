@@ -82,13 +82,13 @@ class MorseCard extends Component {
   }
 
   render() {
-    const { highlightedCard, character } = this.props;
+    const { character } = this.props;
     const text = (Alphabet[character]).split('').map(x => x === '0' ? '.' : '-').join('');
     return (
       <CryptoCard
         width={80}
         height={30}
-        hasFocus={highlightedCard === character}
+        character={character}
         onPress={this.onPress}
       >
         <View style={styles.contents}>
@@ -104,9 +104,7 @@ class MorseCard extends Component {
   }
 }
 
-export default connect(state => ({
-  highlightedCard: state.highlightedCard
-}), {
+export default connect(null, {
   addCharacter,
   clearHighlight
 })(MorseCard);

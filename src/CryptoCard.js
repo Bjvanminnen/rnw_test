@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
 import { TouchableHighlight } from 'react-native';
 
 const styles = {
@@ -13,25 +14,35 @@ const styles = {
   }
 };
 
-const CryptoCard = ({hasFocus, width, height, onPress, children, style}) => (
-  <TouchableHighlight
-    style={[
-      styles.main,
-      (hasFocus && styles.focus),
-      style,
-      { width, height }
-    ]}
-    onPress={onPress}
-  >
-    {children}
-  </TouchableHighlight>
-);
-CryptoCard.propTypes = {
-  hasFocus: PropTypes.bool.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  onPress: PropTypes.func.isRequired,
-  style: PropTypes.object
-};
+class CryptoCard extends Component {
+  propTypes: {
+    character: PropTypes.string.isRequired,
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    onPress: PropTypes.func.isRequired,
 
-export default CryptoCard;
+    // redux provided
+    highlightedCard: PropTypes.letter.isRequired,
+  }
+
+  render() {
+    const { character, highlightedCard, width, height, onPress, children } = this.props;
+    const hasFocus = character === highlightedCard;
+    return (
+      <TouchableHighlight
+        style={[
+          styles.main,
+          (hasFocus && styles.focus),
+          { width, height }
+        ]}
+        onPress={onPress}
+      >
+        {children}
+      </TouchableHighlight>
+    );
+  }
+}
+
+export default connect(state => ({
+  highlightedCard: state.highlightedCard
+}))(CryptoCard);
