@@ -16,7 +16,7 @@ const styles = {
   },
   text: {
     fontFamily: 'Courier New',
-    fontSize: 20
+    fontSize: 30
   },
   selected: {
     borderWidth: 1,

@@ -15,8 +15,9 @@ const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   main: {
     marginTop: 20,
-    width: Platform.OS === 'web' ? 375 : width,
-    height: Platform.OS === 'web' ? 667 : height,
+    // defaults are from my iphone 7 plus
+    width: Platform.OS === 'web' ? 414 : width,
+    height: Platform.OS === 'web' ? 736 : height,
     backgroundColor: '#eeeeee'
   }
 });

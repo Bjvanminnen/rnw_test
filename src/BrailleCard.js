@@ -75,7 +75,7 @@ const styles = {
     flexDirection: 'column'
   },
   text: {
-    color: 'lightgray'
+    color: 'gray'
   }
 };
 
@@ -97,8 +97,8 @@ class BrailleCard extends Component {
     return (
       <CryptoCard
         hasFocus={highlightedCard === character}
-        width={40}
-        height={40}
+        width={45}
+        height={45}
         onPress={this.onPress}
       >
         <View style={styles.contents}>

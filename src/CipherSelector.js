@@ -7,11 +7,15 @@ const styles = {
   main: {
     flexDirection: 'row',
     alignSelf: 'center',
-    marginTop: 5
+    marginTop: 5,
+  },
+  label: {
+    marginLeft: 5,
+    marginRight: 5,
+    fontSize: 30
   },
   button: {
-    marginLeft: 5,
-    marginRight: 5
+    fontSize: 30
   }
 };
 
@@ -19,12 +23,26 @@ const styles = {
 // a dropdown.
 const CipherSelector = ({cipher, incrementCipher, decrementCipher}) => (
   <View style={styles.main}>
-    <TouchableHighlight onPress={decrementCipher}>
-      <Text style={styles.button}>{"<"}</Text>
+    <TouchableHighlight
+      onPress={decrementCipher}
+    >
+      <Text
+        style={styles.button}
+      >
+        {"<"}
+      </Text>
     </TouchableHighlight>
-    <Text>{cipher}</Text>
-    <TouchableHighlight onPress={incrementCipher}>
-      <Text style={styles.button}>{">"}</Text>
+    <Text style={styles.label}>
+      {cipher}
+    </Text>
+    <TouchableHighlight
+      onPress={incrementCipher}
+    >
+      <Text
+        style={styles.button}
+      >
+        {">"}
+      </Text>
     </TouchableHighlight>
   </View>
 );

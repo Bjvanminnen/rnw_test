@@ -4,7 +4,7 @@ import MorseCard from './MorseCard';
 
 const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 // TODO - could be dependent on dimensions (or just figure out flex)
-const CARDS_PER_ROW = 6;
+const CARDS_PER_ROW = 4;
 
 const styles = {
   row: {

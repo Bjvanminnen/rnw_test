@@ -58,8 +58,12 @@ const styles = {
     flexDirection: 'column',
     marginRight: 4
   },
+  label: {
+    color: 'gray'
+  },
   text: {
-    color: 'lightgray'
+    lineHeight: 30,
+    fontSize: 30
   }
 };
 
@@ -82,17 +86,17 @@ class MorseCard extends Component {
     const text = (Alphabet[character]).split('').map(x => x === '0' ? '.' : '-').join('');
     return (
       <CryptoCard
-        width={50}
-        height={20}
+        width={80}
+        height={30}
         hasFocus={highlightedCard === character}
         onPress={this.onPress}
       >
         <View style={styles.contents}>
           <View style={styles.textColumn}>
-            <Text style={styles.text}>{character}</Text>
+            <Text style={styles.label}>{character}</Text>
           </View>
-          <View style={styles.card}>
-            {text}
+          <View>
+            <Text style={styles.text}>{text}</Text>
           </View>
         </View>
       </CryptoCard>
