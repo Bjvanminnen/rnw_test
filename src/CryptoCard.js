@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { TouchableHighlight } from 'react-native';
-import { addCharacter } from './redux/plaintext';
+import { setCharacter } from './redux/plaintext';
 import { clearHighlight } from './redux/highlightedCard';
 
 const styles = {
@@ -35,8 +35,8 @@ class CryptoCard extends Component {
 
   // TODO - dont clear highlight if we're not on the last index
   onPress() {
-    const { character, addCharacter, clearHighlight } = this.props;
-    addCharacter(character);
+    const { character, setCharacter, clearHighlight } = this.props;
+    setCharacter(character);
     clearHighlight();
   }
 
@@ -60,4 +60,4 @@ class CryptoCard extends Component {
 
 export default connect(state => ({
   highlightedCard: state.highlightedCard
-}), { addCharacter, clearHighlight })(CryptoCard);
+}), { setCharacter, clearHighlight })(CryptoCard);

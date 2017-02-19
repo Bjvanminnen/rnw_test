@@ -1,8 +1,7 @@
 import { List } from 'immutable';
 
-// TODO - rename to set character
-const ADD_CHARACTER = 'plaintext/ADD_CHARACTER';
-export const addCharacter = character => ({type: ADD_CHARACTER, character});
+const SET_CHARACTER = 'plaintext/SET_CHARACTER';
+export const setCharacter = character => ({type: SET_CHARACTER, character});
 
 const CLEAR_STRING = 'plaintext/CLEAR_STRING';
 export const clearString = () => ({ type: CLEAR_STRING });
@@ -16,7 +15,7 @@ const initialState = {
 };
 
 export default function plaintext(state = initialState, action) {
-  if (action.type === ADD_CHARACTER) {
+  if (action.type === SET_CHARACTER) {
     const index = state.selectedIndex;
     let nextLetters = state.letters.set(index, action.character);
     if (index === state.letters.size - 1) {
