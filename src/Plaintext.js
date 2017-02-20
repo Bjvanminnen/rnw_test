@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableHighlight, Text } from 'react-native';
+import { ScrollView, View, TouchableHighlight, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { selectCharacter } from './redux/plaintext';
 
@@ -27,7 +27,8 @@ const styles = {
 
 // TODO : should be scrollable
 const Plaintext = ({selectedIndex, characters, selectCharacter}) => (
-  <View style={styles.plaintext}>
+  <ScrollView>
+    <View style={styles.plaintext}>
     {
       characters.map((char, index) => (
         <TouchableHighlight
@@ -46,7 +47,8 @@ const Plaintext = ({selectedIndex, characters, selectCharacter}) => (
         </TouchableHighlight>
       ))
     }
-  </View>
+    </View>
+  </ScrollView>
 );
 
 export default connect(state => ({

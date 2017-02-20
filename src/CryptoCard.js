@@ -31,8 +31,7 @@ class CryptoCard extends Component {
 
     this.onPress = this.onPress.bind(this);
   }
-
-  // TODO - dont clear highlight if we're not on the last index
+  
   onPress() {
     const { character, setCharacter } = this.props;
     setCharacter(character);

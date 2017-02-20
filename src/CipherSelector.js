@@ -19,8 +19,7 @@ const styles = {
   }
 };
 
-// TODO: Clicking left/right should change ciphers. Clicking name should give us
-// a dropdown.
+// TODO: Clicking name should give us a dropdown.
 const CipherSelector = ({cipher, incrementCipher, decrementCipher}) => (
   <View style={styles.main}>
     <TouchableHighlight
